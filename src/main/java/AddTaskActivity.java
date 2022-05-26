@@ -68,6 +68,8 @@ public class AddTaskActivity extends AppCompatActivity {
         if (savedInstanceState != null && savedInstanceState.containsKey(INSTANCE_TASK_ID)) {
             mTaskId = savedInstanceState.getInt(INSTANCE_TASK_ID, DEFAULT_TASK_ID);
         }
+        
+        /* A intent is crated to get the id of the task in table */
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_TASK_ID)) {
@@ -76,11 +78,9 @@ public class AddTaskActivity extends AppCompatActivity {
                 // populate the UI
                 mTaskId = intent.getIntExtra(EXTRA_TASK_ID, DEFAULT_TASK_ID);
 
-                // COMPLETED (9) Remove the logging and the call to loadTaskById, this is done in the ViewModel now
-                // COMPLETED (10) Declare a AddTaskViewModelFactory using mDb and mTaskId
+             
                 AddTaskViewModelFactory factory = new AddTaskViewModelFactory(mDb, mTaskId);
-                // COMPLETED (11) Declare a AddTaskViewModel variable and initialize it by calling ViewModelProviders.of
-                // for that use the factory created above AddTaskViewModel
+              
                 final AddTaskViewModel viewModel
                         = ViewModelProviders.of(this, factory).get(AddTaskViewModel.class);
 
@@ -137,6 +137,8 @@ public class AddTaskActivity extends AppCompatActivity {
      * It retrieves user input and inserts that new task data into the underlying database.
      */
     public void onSaveButtonClicked() {
+        /* Initiating th evariables that have to be passd when adding a task to
+        the taskEntry*/
         String description = mEditText.getText().toString();
         int priority = getPriorityFromViews();
         Date date = new Date();
@@ -145,12 +147,17 @@ public class AddTaskActivity extends AppCompatActivity {
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
+                /* Here if the task id is equal to default the that means the user
+                is creating a brand new task*/
                 if (mTaskId == DEFAULT_TASK_ID) {
                     // insert new task
                     mDb.taskDao().insertTask(task);
                 } else {
-                    //update task
+      
+                 /* Here if the task id is not equal to default the that means the user
+                is updating an old task*/
                     task.setId(mTaskId);
+                    /updates task
                     mDb.taskDao().updateTask(task);
                 }
                 finish();
@@ -163,6 +170,8 @@ public class AddTaskActivity extends AppCompatActivity {
      */
     public int getPriorityFromViews() {
         int priority = 1;
+        /* Here we are using the view id and using a switches and cases
+        to check whic priority it is*/
         int checkedId = ((RadioGroup) findViewById(R.id.radioGroup)).getCheckedRadioButtonId();
         switch (checkedId) {
             case R.id.radButton1:
