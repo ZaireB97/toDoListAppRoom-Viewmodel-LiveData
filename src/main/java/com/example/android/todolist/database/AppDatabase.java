@@ -16,6 +16,8 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "todolist";
     private static AppDatabase sInstance;
 
+    /* This instance will create a database in singleton pattern 
+    singleton pattern; restricts the instantiation of a class to one object*/
     public static AppDatabase getInstance(Context context) {
         if (sInstance == null) {
             synchronized (LOCK) {
