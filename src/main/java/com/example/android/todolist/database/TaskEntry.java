@@ -7,16 +7,25 @@ import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Date;
 
+//This line makes the entity im naming it task
 @Entity(tableName = "task")
+
 public class TaskEntry {
 
+    /* This will enrusre that every item in the table has a unique id
+    it will also be auto generated*/
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String description;
     private int priority;
+    //This line creates a column called updated_at
     @ColumnInfo(name = "updated_at")
     private Date updatedAt;
 
+    /*Ignore is here so that the Room database will ignore this constructor when updating
+    or requesting information from the taskEntry
+    */
+  
     @Ignore
     public TaskEntry(String description, int priority, Date updatedAt) {
         this.description = description;
