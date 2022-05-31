@@ -10,6 +10,10 @@ import com.example.android.todolist.database.TaskEntry;
 
 import java.util.List;
 
+
+/* We are using this viewmodel object ot cache the list of task
+entry objects*/ 
+
 public class MainViewModel extends AndroidViewModel {
 
     // Constant for logging
