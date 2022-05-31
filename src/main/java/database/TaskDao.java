@@ -24,6 +24,9 @@ public interface TaskDao {
 
     @Delete
     void deleteTask(TaskEntry taskEntry);
+    
+    /* By prefixing the id with ";" it will automatically use
+    the given id to search the RoomDatabase*/
 
     @Query("SELECT * FROM task WHERE id = :id")
     LiveData<TaskEntry> loadTaskById(int id);
