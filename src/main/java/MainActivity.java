@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
     }
 
     private void setupViewModel() {
+        /*Using the viemodel to retreive the task instead of the observer */
         MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         viewModel.getTasks().observe(this, new Observer<List<TaskEntry>>() {
             @Override
