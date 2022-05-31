@@ -112,7 +112,9 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
 
     @Override
     public void onItemClickListener(int itemId) {
-        // Launch AddTaskActivity adding the itemId as an extra in the intent
+        /* Launch AddTaskActivity adding the itemId as an extra in the intent. 
+        The intent will allow us to check if we are adding a new task updatin one once we
+        start the activity*/
         Intent intent = new Intent(MainActivity.this, AddTaskActivity.class);
         intent.putExtra(AddTaskActivity.EXTRA_TASK_ID, itemId);
         startActivity(intent);
