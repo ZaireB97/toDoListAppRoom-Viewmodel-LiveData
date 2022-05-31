@@ -130,6 +130,8 @@ public class AddTaskActivity extends AppCompatActivity {
         Date date = new Date();
 
         final TaskEntry task = new TaskEntry(description, priority, date);
+        /* This will create an instance of the executor so that we can 
+        insert a new task*/
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
