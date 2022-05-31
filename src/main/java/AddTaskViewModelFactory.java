@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProvider;
 
 import com.example.android.todolist.database.AppDatabase;
 
+/*The factory is being created becuase we need to pass the ID of the task as a parameter */
 
 public class AddTaskViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
